@@ -7,15 +7,15 @@
 Summary:	Python 3 module for accessing Extended Attributes of the files
 Summary(pl.UTF-8):	Moduł Pythona 3 pozwalający na dostęp do rozszerzonych atrybutów plików
 Name:		python3-%{module}
-Version:	0.7.1
-Release:	5
+Version:	0.8.1
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries/Python
 Source0:	https://pyxattr.k1024.org/downloads/%{module}-%{version}.tar.gz
-# Source0-md5:	f3341e703489452afaf68b336be5d32c
+# Source0-md5:	b741f7a2ce0f602416be777bce03a6e1
 URL:		https://pyxattr.k1024.org/
-BuildRequires:	python3-devel >= 1:3.4
-BuildRequires:	python3-modules >= 1:3.4
+BuildRequires:	python3-devel >= 1:3.7
+BuildRequires:	python3-modules >= 1:3.7
 BuildRequires:	python3-setuptools
 %if %{with tests}
 BuildRequires:	python3-pytest
@@ -26,7 +26,7 @@ BuildRequires:	rpmbuild(macros) >= 1.714
 BuildRequires:	python3-recommonmark
 BuildRequires:	sphinx-pdg-3
 %endif
-Requires:	python3-libs >= 1:3.4
+Requires:	python3-libs >= 1:3.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -44,7 +44,7 @@ plików.
 
 %if %{with tests}
 PYTHONPATH=$(echo $(pwd)/build-3/lib.*) \
-%{__python3} -m pytest test
+%{__python3} -m pytest tests
 %endif
 
 %if %{with doc}
@@ -61,6 +61,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc NEWS README.md
+%doc NEWS.md README.md
 %attr(755,root,root) %{py3_sitedir}/xattr.cpython-*.so
 %{py3_sitedir}/pyxattr-%{version}-py*.egg-info
